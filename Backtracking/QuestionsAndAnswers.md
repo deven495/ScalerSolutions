@@ -63,8 +63,6 @@ Explanation 2:
 You can see that these are all possible subsets.
 
 Solution ->
-
-
  static ArrayList<ArrayList<Integer>> mainList;
     static ArrayList<Integer> temp = new ArrayList<>();
 
@@ -221,8 +219,6 @@ Explanation 2:
  All the possible unique permutation of array [1, 2].
 
  Solution->
-
-
   ArrayList<ArrayList<Integer>> MainList;
     ArrayList<Integer> list;
     public void permutations(ArrayList<Integer> q ,int n, int index){
@@ -361,7 +357,7 @@ Solution->
         }
         return paths(A,visited,startRow,startCol,zeros);
     }
-    
+
 ---------------------------------------------------------------------------------------------------------
 HomeWork -> Q1. Number of Squareful Arrays
 
