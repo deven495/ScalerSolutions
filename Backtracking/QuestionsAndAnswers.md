@@ -414,7 +414,7 @@ Explanation 2:
 
  Solution->
 
-   ArrayList<ArrayList<Integer>> list;
+    ArrayList<ArrayList<Integer>> list;
     ArrayList<Integer> temp;
     HashSet<Integer> x;
     public void permutations(ArrayList<Integer> q,int idx){
