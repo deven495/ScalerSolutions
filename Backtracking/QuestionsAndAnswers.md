@@ -62,9 +62,9 @@ Explanation 2:
 
 You can see that these are all possible subsets.
 
-Solution --------------------------------------------------------------------------------------------->
+Solution ->
 
- static ArrayList<ArrayList<Integer>> mainList;
+    static ArrayList<ArrayList<Integer>> mainList;
     static ArrayList<Integer> temp = new ArrayList<>();
 
     public void allSubsets(ArrayList<Integer> q, int lastInd) {
@@ -134,7 +134,7 @@ Example Output
 Example Explanation
 All the possible permutation of array [1, 2, 3].
 
-Solution --------------------------------------------------------------------------------------------->
+Solution ->
 
     ArrayList<ArrayList<Integer>> list;
     ArrayList<Integer> temp;
@@ -218,7 +218,7 @@ Explanation 2:
 
  All the possible unique permutation of array [1, 2].
 
- Solution --------------------------------------------------------------------------------------------->
+ Solution ->
 
     ArrayList<ArrayList<Integer>> MainList;
     ArrayList<Integer> list;
@@ -309,9 +309,9 @@ Explanation 1:
 
 Answer is evident here.
 
-Solution --------------------------------------------------------------------------------------------->
+Solution ->
 
-      public int paths(ArrayList<ArrayList<Integer>> field,boolean[][] visited,int row,int col,int zeros){
+        public int paths(ArrayList<ArrayList<Integer>> field,boolean[][] visited,int row,int col,int zeros){
         if(row < 0 || col < 0 || row >= field.size() || col >= field.get(0).size() || visited[row][col]
         || field.get(row).get(col) == -1){
             return 0;
@@ -339,7 +339,7 @@ Solution -----------------------------------------------------------------------
         return totalPaths;
         
         }
-    public int solve(ArrayList<ArrayList<Integer>> A) {
+        public int solve(ArrayList<ArrayList<Integer>> A) {
 
         boolean visited[][] = new boolean[A.size()][A.get(0).size()];
         int zeros = 0;
