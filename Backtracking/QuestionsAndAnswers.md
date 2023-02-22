@@ -135,7 +135,8 @@ Example Explanation
 All the possible permutation of array [1, 2, 3].
 
 Solution --------------------------------------------------------------------------------------------->
-ArrayList<ArrayList<Integer>> list;
+
+    ArrayList<ArrayList<Integer>> list;
     ArrayList<Integer> temp;
     public void permutations(boolean[] arr,ArrayList<Integer> q){
         if(temp.size() == q.size()){
