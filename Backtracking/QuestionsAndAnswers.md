@@ -218,8 +218,9 @@ Explanation 2:
 
  All the possible unique permutation of array [1, 2].
 
- Solution->
-  ArrayList<ArrayList<Integer>> MainList;
+ Solution --------------------------------------------------------------------------------------------->
+
+    ArrayList<ArrayList<Integer>> MainList;
     ArrayList<Integer> list;
     public void permutations(ArrayList<Integer> q ,int n, int index){
         if(index == n){
@@ -308,9 +309,9 @@ Explanation 1:
 
 Answer is evident here.
 
-Solution->
+Solution --------------------------------------------------------------------------------------------->
 
- public int paths(ArrayList<ArrayList<Integer>> field,boolean[][] visited,int row,int col,int zeros){
+public int paths(ArrayList<ArrayList<Integer>> field,boolean[][] visited,int row,int col,int zeros){
         if(row < 0 || col < 0 || row >= field.size() || col >= field.get(0).size() || visited[row][col]
         || field.get(row).get(col) == -1){
             return 0;
@@ -337,7 +338,7 @@ Solution->
             }
         return totalPaths;
         
-    }
+        }
     public int solve(ArrayList<ArrayList<Integer>> A) {
 
         boolean visited[][] = new boolean[A.size()][A.get(0).size()];
@@ -356,7 +357,7 @@ Solution->
             }
         }
         return paths(A,visited,startRow,startCol,zeros);
-    }
+    }        
 
 ---------------------------------------------------------------------------------------------------------
 HomeWork -> Q1. Number of Squareful Arrays
