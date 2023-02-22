@@ -311,7 +311,7 @@ Answer is evident here.
 
 Solution --------------------------------------------------------------------------------------------->
 
-public int paths(ArrayList<ArrayList<Integer>> field,boolean[][] visited,int row,int col,int zeros){
+      public int paths(ArrayList<ArrayList<Integer>> field,boolean[][] visited,int row,int col,int zeros){
         if(row < 0 || col < 0 || row >= field.size() || col >= field.get(0).size() || visited[row][col]
         || field.get(row).get(col) == -1){
             return 0;
@@ -357,7 +357,7 @@ public int paths(ArrayList<ArrayList<Integer>> field,boolean[][] visited,int row
             }
         }
         return paths(A,visited,startRow,startCol,zeros);
-    }        
+        }        
 
 ---------------------------------------------------------------------------------------------------------
 HomeWork -> Q1. Number of Squareful Arrays
