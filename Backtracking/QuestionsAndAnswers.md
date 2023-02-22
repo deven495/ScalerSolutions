@@ -63,7 +63,6 @@ Explanation 2:
 You can see that these are all possible subsets.
 
 Solution --------------------------------------------------------------------------------------------->
-
  static ArrayList<ArrayList<Integer>> mainList;
     static ArrayList<Integer> temp = new ArrayList<>();
 
@@ -134,9 +133,7 @@ Example Output
 Example Explanation
 All the possible permutation of array [1, 2, 3].
 
-Solution->
-
-
+Solution --------------------------------------------------------------------------------------------->
 ArrayList<ArrayList<Integer>> list;
     ArrayList<Integer> temp;
     public void permutations(boolean[] arr,ArrayList<Integer> q){
