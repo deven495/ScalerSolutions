@@ -5,7 +5,7 @@
  
  1.BackTracking-Fully Uploaded
  
- 2.Dynamic Programming- will be uploaded soon
+ 2.Dynamic Programming- In progress
  
  3.Graphs-will be uploaded soon
 
