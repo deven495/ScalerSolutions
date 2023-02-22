@@ -62,8 +62,8 @@ Explanation 2:
 
 You can see that these are all possible subsets.
 
-Solution ->
-}
+Solution --------------------------------------------------------------------------------------------->
+
  static ArrayList<ArrayList<Integer>> mainList;
     static ArrayList<Integer> temp = new ArrayList<>();
 
