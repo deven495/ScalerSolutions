@@ -5,7 +5,7 @@ Solution ->
 
     
 ---------------------------------------------------------------------------------------------------------
-Q2. Fibonacci Number
+Q2. Fibonacci Number TC(O)N SC(O)N
 
 Problem Description
 Given a positive integer A, write a program to find the Ath Fibonacci number.
