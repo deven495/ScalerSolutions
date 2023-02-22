@@ -63,6 +63,8 @@ Explanation 2:
 You can see that these are all possible subsets.
 
 Solution ->
+
+
  static ArrayList<ArrayList<Integer>> mainList;
     static ArrayList<Integer> temp = new ArrayList<>();
 
@@ -88,11 +90,7 @@ Solution ->
     }
 ---------------------------------------------------------------------------------------------------------
 Q2. Permutations
-Solved
-character backgroundcharacter
-Stuck somewhere?
-Ask for help from a TA and get it resolved.
-Get help from TA.
+
 Problem Description
 Given an integer array A of size N denoting collection of numbers , return all possible permutations.
 
@@ -138,6 +136,8 @@ Example Explanation
 All the possible permutation of array [1, 2, 3].
 
 Solution->
+
+
 ArrayList<ArrayList<Integer>> list;
     ArrayList<Integer> temp;
     public void permutations(boolean[] arr,ArrayList<Integer> q){
@@ -221,6 +221,8 @@ Explanation 2:
  All the possible unique permutation of array [1, 2].
 
  Solution->
+
+
   ArrayList<ArrayList<Integer>> MainList;
     ArrayList<Integer> list;
     public void permutations(ArrayList<Integer> q ,int n, int index){
@@ -359,6 +361,7 @@ Solution->
         }
         return paths(A,visited,startRow,startCol,zeros);
     }
+    
 ---------------------------------------------------------------------------------------------------------
 HomeWork -> Q1. Number of Squareful Arrays
 
@@ -454,6 +457,7 @@ Explanation 2:
         if(A.size() == 1) return 0;
         return permute(A).size();
     }
+
 ---------------------------------------------------------------------------------------------------------
 Q2. Letter Phone
 
@@ -512,6 +516,7 @@ Explanation 2:
  Only 3 possible letter combinations.
 
  Solutions ->
+
 
   HashMap<Integer,String> charMap;
     ArrayList<String> list;
@@ -605,6 +610,7 @@ Explanation 2:
         2. Remove the parentheses at index 2 then string becomes : "(a())()"
 
 Solution->
+
 
 HashMap<Integer,HashSet<String>> map;
     int ans;
@@ -727,6 +733,7 @@ Explanation 1:
 All the subsets of the array [1, 2, 2] in lexicographically sorted order.
 
 Solution->
+
 
   ArrayList<ArrayList<Integer>> list;
     ArrayList<Integer> temp;
