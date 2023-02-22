@@ -514,8 +514,7 @@ Explanation 2:
 
  Solutions ->
 
-
-  HashMap<Integer,String> charMap;
+    HashMap<Integer,String> charMap;
     ArrayList<String> list;
     String temp = "";
     public void allCombinations(String q, int idx){
@@ -609,7 +608,7 @@ Explanation 2:
 Solution->
 
 
-HashMap<Integer,HashSet<String>> map;
+    HashMap<Integer,HashSet<String>> map;
     int ans;
     public boolean checkValid(String q){
         int left = 0;
@@ -731,8 +730,7 @@ All the subsets of the array [1, 2, 2] in lexicographically sorted order.
 
 Solution->
 
-
-  ArrayList<ArrayList<Integer>> list;
+    ArrayList<ArrayList<Integer>> list;
     ArrayList<Integer> temp;
     public void subsets(ArrayList<Integer> q , int index){
         if(index == q.size()){
