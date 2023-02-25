@@ -542,7 +542,7 @@ Explanation 2:
  The number of ways decoding "8" is 1.
 
 
-Solution ->
+Solution -> TC O(N) O(N)
 
     public static final long mod = 1000000007;
     public int numDecodings(String A) {
