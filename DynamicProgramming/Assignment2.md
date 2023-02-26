@@ -368,18 +368,174 @@ Solution ->
     
 ---------------------------------------------------------------------------------------------------------
 
-Q-> 
+Q1. Max Rectangle in Binary Matrix
+
+Problem Description
+Given a 2-D binary matrix A of size N x M filled with 0's and 1's, find the largest rectangle containing only ones and return its area.
+
+
+
+Problem Constraints
+1 <= N, M <= 100
+
+
+
+Input Format
+The first argument is a 2-D binary array A.
+
+
+
+Output Format
+Return an integer denoting the area of the largest rectangle containing only ones.
+
+
+
+Example Input
+Input 1:
+
+ A = [
+       [1, 1, 1]
+       [0, 1, 1]
+       [1, 0, 0] 
+     ]
+Input 2:
+
+ A = [
+       [0, 1, 0]
+       [1, 1, 1]
+     ] 
+
+
+Example Output
+Output 1:
+
+ 4
+Output 2:
+
+ 3
+
+
+Example Explanation
+Explanation 1:
+
+ As the max area rectangle is created by the 2x2 rectangle created by (0, 1), (0, 2), (1, 1) and (1, 2).
+Explanation 2:
+
+ As the max area rectangle is created by the 1x3 rectangle created by (1, 0), (1, 1) and (1, 2).
 
 
 Solution ->
+
+    public int maximalRectangle(int[][] A) {
+         int n=A.length, m=A[0].length;
+    
+    for(int i=0; i<m; i++){
+        for(int j=1; j<n; j++){
+            if(A[j][i]==1)
+            A[j][i]+=A[j-1][i];
+        }
+    }
+    int ans = 0;
+    for(int base = 0; base < n; base++){
+        for(int l = 0 ; l < m ; l++){
+            int r = l, mn = A[base][l]; 
+            while(r < m){
+                mn = Math.min(mn, A[base][r]);
+                ans=Math.max(ans, (r-l+1)*mn);
+                r++;
+            }
+        }
+    }
+    return ans;
+    }
 
     
 ---------------------------------------------------------------------------------------------------------
 
-Q-> 
+Q2. Min Sum Path in Matrix
+
+Problem Description
+Given a M x N grid A of integers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+
+Return the minimum sum of the path.
+
+NOTE: You can only move either down or right at any point in time.
+
+
+
+Problem Constraints
+1 <= M, N <= 2000
+
+-1000 <= A[i][j] <= 1000
+
+
+
+Input Format
+First and only argument is a 2-D grid A.
+
+
+
+Output Format
+Return an integer denoting the minimum sum of the path.
+
+
+
+Example Input
+Input 1:
+
+ A = [
+       [1, 3, 2]
+       [4, 3, 1]
+       [5, 6, 1]
+     ]
+Input 2:
+
+ A = [
+       [1, -3, 2]
+       [2, 5, 10]
+       [5, -5, 1]
+     ]
+
+
+Example Output
+Output 1:
+
+ 8
+Output 2:
+
+ -1
+
+
+Example Explanation
+Explanation 1:
+
+ The path will be: 1 -> 3 -> 2 -> 1 -> 1.
+Input 2:
+
+ The path will be: 1 -> -3 -> 5 -> -5 -> 1.
 
 
 Solution ->
+
+    public int minPathSum(int[][] A) {
+       int dp[][] = new int[A.length+1][A[0].length+1];
+       for(int i = 0 ; i < dp.length ; i++){
+           for(int j =0 ; j < dp[0].length ; j++){
+               dp[i][j] = Integer.MAX_VALUE;
+           }
+       }
+       dp[A.length-1][A[0].length-1] = A[A.length-1][A[0].length-1];
+        for(int i = A.length-1 ; i >= 0 ; i--){
+            for(int j = A[i].length-1 ; j >= 0 ; j--){
+                if(i == A.length-1 && j == A[0].length-1){
+                    continue;
+                }else{
+                    dp[i][j] = Math.min(dp[i][j+1],dp[i+1][j])+A[i][j];
+                }
+            }
+        }
+        return dp[0][0];
+    }
 
     
 ---------------------------------------------------------------------------------------------------------
