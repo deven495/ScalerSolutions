@@ -467,39 +467,223 @@ Explanation 2:
 
 Solution ->
 
+    public int knapSackBU(int wt[], int[]price,int cap){
+        int n = wt.length;
+        int dp[][] = new int[n+1][cap+1];
+
+        for(int row = n-1 ; row >= 0 ; row--){
+            for(int col = 1 ; col <= cap ; col++){
+                int e = dp[row+1][col];
+                int i = 0;
+                if(col >= wt[row]){
+                    i = dp[row][col-wt[row]] + price[row];
+                }
+                dp[row][col] = Math.max(e,i);
+            }
+        }
+        return dp[0][cap];
+    }
+    public int solve(int[] A, int[] B, int[] C, int D) {
+        int price[] = new int[A.length];
+        for(int i = 0 ; i < A.length ; i++){
+            price[i] = A[i]*B[i];
+        }
+        return knapSackBU(C,price,D);
+    }
+
     
 ---------------------------------------------------------------------------------------------------------
 
-Q-> 
+Q2. Tushar's Birthday Party
+
+Problem Description
+As it is Tushar's Birthday on March 1st, he decided to throw a party to all his friends at TGI Fridays in Pune. Given are the eating capacity of each friend, filling capacity of each dish and cost of each dish. A friend is satisfied if the sum of the filling capacity of dishes he ate is equal to his capacity. Find the minimum cost such that all of Tushar's friends are satisfied (reached their eating capacity).
+
+NOTE:
+
+Each dish is supposed to be eaten by only one person. Sharing is not allowed.
+
+Each friend can take any dish unlimited number of times.
+
+There always exists a dish with filling capacity 1 so that a solution always exists.
+
+
+
+Problem Constraints
+|A| <= 1000
+
+|B| <= 1000
+
+|C| <= 1000
+
+
+
+Input Format
+First Argument is vector A, denoting eating capacities
+
+Second Argument is vector B, denoting filling capacities
+
+Third Argument is vector C, denoting cost
+
+
+
+Output Format
+Return a single integer, the answer to the problem
+
+
+
+Example Input
+Input 1:
+
+A = [2, 4, 6]
+B = [2, 1, 3]
+C = [2, 5, 3]
+Input 2:
+
+A = [2]
+B = [1]
+C = [2]
+
+
+Example Output
+Output 1:
+
+12
+Output 2:
+
+4
+
+
+Example Explanation
+Explanation 1:
+
+First friend takes dish 1, Second friend takes dish 1 twice and third friend takes dish 3 twice.
+So 2 + 2*2 + 3*2 = 12.
+Explanation 2:
+
+Only way is to take 2 dishes of cost 2, hence 4.
 
 
 Solution ->
 
+    public int knapSackBU(int wt[], int[]price,int cap){
+        int n = wt.length;
+        int dp[][] = new int[n+1][cap+1];
+        for(int j = 1 ; j <= cap ; j++){
+            dp[n][j] = (int)1e9;
+        }
+        for(int row = n-1 ; row >= 0 ; row--){
+            for(int col = 1 ; col <= cap ; col++){
+                int e = dp[row+1][col];
+                int i = Integer.MAX_VALUE;
+                if(col >= wt[row]){
+                    i = dp[row][col-wt[row]] + price[row];
+                }
+                dp[row][col] = Math.min(e,i);
+            }
+        }
+        return dp[0][cap];
+    }
+    public int solve(final int[] A, final int[] B, final int[] C) {
+        int ans = 0;
+        for(int i = 0 ; i < A.length ; i++){
+            ans += knapSackBU(B,C,A[i]);
+        }
+        return ans;
+    }
+
     
 ---------------------------------------------------------------------------------------------------------
 
-Q-> 
+Q3. Ways to send the signal
+
+Problem Description
+
+You are trying to send signals to aliens using a linear array of A laser lights. You don't know much about how the aliens are going to percieve the signals, but what you know is that if two consecutive lights are on then the aliens might take it as a sign of danger and destroy the earth.
+
+Find and return the total number of ways in which you can send a signal without compromising the safty of the earth. Return the ans % 109 + 7.
+
+
+
+Problem Constraints
+
+1 <= A <= 105
+
+
+
+Input Format
+
+The only argument given is integer A.
+
+
+
+Output Format
+
+Return the ans%(109+7).
+
+
+
+Example Input
+
+Input 1:
+
+ A = 2
+Input 2:
+
+ A = 3
+
+
+Example Output
+
+Output 1:
+
+ 3
+Output 2:
+
+ 5
+
+
+Example Explanation
+
+Explanation 1:
+
+ OFF OFF
+ OFF ON 
+ ON OFF
+All lights off is also a valid signal which probably means 'bye'
+
+Explanation 2:
+
+ OFF OFF OFF
+ OFF OFF ON
+ OFF ON OFF 
+ ON OFF OFF
+ ON OFF ON
 
 
 Solution ->
 
+    public int solve(int A) {
+        int mod=1000000007;
+        int a=2;// no.of ways to send when A=1;
+        int b=3;// no.of ways to send signal when A=2;
+        int c=0;
+        if(A==1)
+        {
+            return 2;
+        }
+        if(A==2)
+        {
+            return 3;
+        }
+        for(int i=3;i<=A;i++)
+        {
+            c =(a%mod+b%mod)%mod;
+            a=b;
+            b=c;
+        }
+        return c%mod;
+    }
+
     
 ---------------------------------------------------------------------------------------------------------
-
-Q-> 
-
-
-Solution ->
-
-    
----------------------------------------------------------------------------------------------------------
-
-Q-> 
-
-
-Solution ->
-
-    
----------------------------------------------------------------------------------------------------------
-
-
