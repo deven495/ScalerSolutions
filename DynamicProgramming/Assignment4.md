@@ -607,6 +607,98 @@ Solution ->
 
     
 ---------------------------------------------------------------------------------------------------------
+Q3. Interleaving Strings
+
+Problem Description
+Given A, B, C find whether C is formed by the interleaving of A and B.
+
+
+
+Problem Constraints
+1 <= length(A), length(B) <= 100
+
+1 <= length(C) <= 200
+
+
+
+Input Format
+The first argument of input contains a string, A.
+The second argument of input contains a string, B.
+The third argument of input contains a string, C.
+
+
+
+Output Format
+Return 1 if string C is formed by interleaving of A and B else 0.
+
+
+
+Example Input
+Input 1:
+
+ A = "aabcc"
+ B = "dbbca"
+ C = "aadbbcbcac"
+Input 2:
+
+ A = "aabcc"
+ B = "dbbca"
+ C = "aadbbbaccc"
+
+
+Example Output
+Output 1:
+
+ 1
+Output 2:
+
+ 0
+
+
+Example Explanation
+Explanation 1:
+
+ "aa" (from A) + "dbbc" (from B) + "bc" (from A) + "a" (from B) + "c" (from A)
+Explanation 2:
+
+ It is not possible to get C by interleaving A and B.
+
+
+Solution ->
+
+    public int interLeaving(String str1 , String str2 , String str3 , int i , int j, int k,int [][][]dp){
+        if(i == str1.length() && j == str2.length() && k == str3.length()){
+            return 1;
+        }
+        if(k == str3.length()){
+            return 0;
+        }
+        if(dp[i][j][k] != -1){
+            return dp[i][j][k];
+        }
+        int ans = 0;
+        if(i < str1.length() && str1.charAt(i) == str3.charAt(k)){
+            ans = interLeaving(str1,str2,str3,i+1, j ,k+1,dp);
+        }
+        if(j < str2.length() && str2.charAt(j) == str3.charAt(k)){
+            ans |= interLeaving(str1,str2,str3,i, j+1 ,k+1,dp);
+        }
+        return dp[i][j][k] = ans;  
+    }
+    public int isInterleave(String A, String B, String C) {
+        int dp[][][] = new int[A.length()+1][B.length()+1][C.length()+1];
+        for(int[][] x : dp){
+            for(int i = 0 ; i < x.length; i++){
+                for(int j = 0 ; j < x[i].length ; j++){
+                    x[i][j] = -1;
+                }
+            }
+        }
+        return interLeaving(A,B,C,0,0,0,dp);
+    }
+
+    
+---------------------------------------------------------------------------------------------------------
 
 Q4. Repeating Subsequence
 
