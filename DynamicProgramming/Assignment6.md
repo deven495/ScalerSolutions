@@ -167,18 +167,166 @@ public int LIS(int[] liss) {
     
 ---------------------------------------------------------------------------------------------------------
 
-Q-> 
+Q3. Palindrome Partitioning II
+
+Problem Description
+Given a string A, partition A such that every substring of the partition is a palindrome.
+
+Return the minimum cuts needed for a palindrome partitioning of A.
+
+
+
+Problem Constraints
+1 <= length(A) <= 501
+
+
+
+Input Format
+The first and the only argument contains the string A.
+
+
+
+Output Format
+Return an integer, representing the minimum cuts needed.
+
+
+
+Example Input
+Input 1:
+
+ A = "aba"
+Input 2:
+
+ A = "aab"
+
+
+Example Output
+Output 1:
+
+ 0
+Output 2:
+
+ 1
+
+
+Example Explanation
+Explanation 1:
+
+ "aba" is already a palindrome, so no cuts are needed.
+Explanation 2:
+
+ Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
 
 
 Solution ->
+
+    public static boolean[][] palli(String str) {
+        boolean[][] palliChachu = new boolean[str.length()][str.length()];
+        for (boolean[] x : palliChachu) {
+            Arrays.fill(x, true);
+        }
+        for (int row = str.length() - 2; row >= 0; row--) {
+            for (int col = row + 1; col < str.length(); col++) {
+                if (str.charAt(row) == str.charAt(col)) {
+                    palliChachu[row][col] = palliChachu[row + 1][col - 1];
+                } else {
+                    palliChachu[row][col] = false;
+                }
+            }
+        }
+        return palliChachu;
+    }
+    public static int partyBU(String str) {
+        int dp[][] = new int[str.length()][str.length()];
+        boolean[][] palliChachu = palli(str);
+        for (int k = 0; k <= str.length() - 1; k++) {
+            for (int si = 0; si <= str.length() - k - 1; si++) {
+                int ei = si + k;
+                if (palliChachu[si][ei]) {
+                    dp[si][ei] = 0;
+                } else {
+                    int min = Integer.MAX_VALUE;
+                    for (int i = si; i < ei; i++) {
+                        int fp = dp[si][i];
+                        int bp = dp[i + 1][ei];
+                        min = Math.min(min, fp + bp + 1);
+                    }
+                    dp[si][ei] = min;
+                }
+            }
+        }
+        return dp[0][str.length() - 1];
+    }
 
     
 ---------------------------------------------------------------------------------------------------------
 
-Q-> 
+Q4. Palindromic Substrings Count
+
+Given a string A consisting of lowercase English alphabets. Your task is to find how many substrings of A are palindrome.
+
+The substrings with different start indexes or end indexes are counted as different substrings even if they consist of same characters.
+
+Return the count of palindromic substrings.
+
+Note: A string is palindrome if it reads the same from backward and forward.
+
+
+Input Format
+
+The only argument given is string A.
+Output Format
+
+Return the count of palindromic substrings.
+Constraints
+
+1 <= length of the array <= 1000
+For Example
+
+Input 1:
+    A = "abab"
+Output 1:
+    6
+Explanation 1:
+    6 palindromic substrings are:
+    "a", "aba", "b", "bab", "a" and "b".
+
+Input 2:
+    A = "ababa"
+Output 2:
+    9
+Explanation 9:
+    9 palindromic substrings are:
+    "a", "a", "a", "b", "b" , "aba" ,"bab", "aba" and "ababa".
 
 
 Solution ->
+
+    public int PaliCount(String q){
+        boolean dp[][] = new boolean[q.length()][q.length()];
+        int ans = 0;
+        for(int k = 0 ; k < q.length() ; k++){
+            for(int si = 0 ; si < q.length()-k ; si++){
+                int ei = si + k;
+                if(si == ei){
+                    dp[si][ei] = true;
+                    ans++;
+                }else{
+                    if(q.charAt(si) != q.charAt(ei)){
+                        dp[si][ei] = false;
+                    }else{
+                        if(si + 1 > ei - 1 || dp[si+1][ei-1] == true){
+                            dp[si][ei] = true;
+                            ans++;
+                        }else{
+                            dp[si][ei] = false;
+                        }
+                    }
+                }
+            }
+        }
+        return ans;
+    }
 
     
 ---------------------------------------------------------------------------------------------------------
@@ -278,10 +426,71 @@ Solution ->
     
 ---------------------------------------------------------------------------------------------------------
 
-Q-> 
+Q6. Word Break
+
+Given a string A and a dictionary of words B, determine if A can be segmented into a space-separated sequence of one or more dictionary words.
+
+Input Format:
+
+The first argument is a string, A.
+The second argument is an array of strings, B.
+Output Format:
+
+Return 0 / 1 ( 0 for false, 1 for true ) for this problem.
+Constraints:
+
+1 <= len(A) <= 6500
+1 <= len(B) <= 10000
+1 <= len(B[i]) <= 20
+Examples:
+
+Input 1:
+    A = "myinterviewtrainer",
+    B = ["trainer", "my", "interview"]
+
+Output 1:
+    1
+
+Explanation 1:
+    Return 1 ( corresponding to true ) because "myinterviewtrainer" can be segmented as "my interview trainer".
+
+Input 2:
+    A = "a"
+    B = ["aaa"]
+
+Output 2:
+    0
+
+Explanation 2:
+    Return 0 ( corresponding to false ) because "a" cannot be segmented as "aaa".
 
 
 Solution ->
+
+    public int breaks(int idx , String A, HashSet<String> set , int dp[]){
+        if(idx == A.length()) return 1;
+
+        String temp = "";
+        if(dp[idx] != -1) return dp[idx];
+        for(int i = idx ; i < A.length() ; i++){
+            temp += A.charAt(i);
+            if(set.contains(temp)){
+                if(breaks(i+1,A,set,dp) == 1) return dp[idx] = 1;
+            }
+        }
+        return dp[idx] = 0;
+    }
+    public int wordBreak(String A, String[] B) {
+        int dp[] = new int[A.length()+1];
+        for(int x : dp){
+            Arrays.fill(dp,-1);
+        }
+        HashSet<String> set = new HashSet<>();
+        for(String x : B){
+            set.add(x);
+        }
+        return breaks(0,A,set,dp);
+    }
 
     
 ---------------------------------------------------------------------------------------------------------
