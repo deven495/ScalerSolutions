@@ -495,27 +495,315 @@ Solution ->
     
 ---------------------------------------------------------------------------------------------------------
 
-Q-> 
+H.W Q1. Longest Balanced Substring
+
+Problem Description
+Given a string A made up of multiple brackets of type "[]" , "()" and "{}" find the length of the longest substring which forms a balanced string .
+
+Conditions for a string to be balanced :
+
+Blank string is balanced ( However blank string will not be provided as a test case ).
+If B is balanced : (B) , [B] and {B} are also balanced.
+If B1 and B2 are balanced then B1B2 i.e the string formed by concatenating B1 and B2 is also balanced.
+
+
+Problem Constraints
+0 <= |A| <= 106
+
+
+
+Input Format
+First and only argument is an string A.
+
+
+
+Output Format
+Return an single integer denoting the lenght of the longest balanced substring.
+
+
+
+Example Input
+Input 1:
+
+ A = "[()]"
+Input 2:
+
+ A = "[(])"
+
+
+Example Output
+Output 1:
+
+ 4
+Output 2:
+
+ 0
+
+
+Example Explanation
+Explanation 1:
+
+ Substring [1:4] i.e "[()]" is the longest balanced substring of length 4.
+Explanation 2:
+
+ None of the substring is balanced so answer is 0.
 
 
 Solution ->
+
+    public boolean sameSame(char a, char b){
+        return (a=='{' && b == '}') || (a=='[' && b == ']') || (a=='(' && b == ')');
+    }
+    public int LBSlength(final String A) {
+        int[] dp = new int[A.length()];
+        int max = 0;
+        for(int i = 1 ; i < A.length() ; i++){
+            if(A.charAt(i) == ')' || A.charAt(i) == ']' || A.charAt(i) == '}'){
+                if(sameSame(A.charAt(i-1),A.charAt(i))){
+                    int pichla = 0;
+                    if(i-2 >= 0){
+                        pichla = dp[i-2];
+                    }
+                    dp[i] = pichla + 2;
+                }else{
+                    int idx = i-dp[i-1]-1;
+                    if(dp[i-1] > 0 && idx >=0 && sameSame(A.charAt(idx),A.charAt(i))){
+                        dp[i] = 2 + dp[i-1];
+                        if(idx - 1 >= 0){
+                            dp[i] += dp[idx-1];
+                        }
+                    } 
+                }
+            }
+            max = Math.max(max,dp[i]);
+        }
+        return max;
+    }
 
     
 ---------------------------------------------------------------------------------------------------------
 
-Q-> 
+Q2. Rod Cutting
+
+Problem Description
+
+There is a rod of length A lying on x-axis with its left end at x = 0 and right end at x = A. Now, there are M weak points on this rod denoted by positive integer values(all less than A) B1, B2, …, BM.
+
+You have to cut rod at all these weak points. You can perform these cuts in any order.
+
+After a cut, rod gets divided into two smaller sub-rods. Cost of making a cut is the length of the sub-rod in which you are making a cut.
+
+Your aim is to minimise this cost. Return an array denoting the sequence in which you will make cuts. If two different sequences of cuts give same cost, return the lexicographically smallest.
+
+NOTE: Sequence a1, a2 ,..., an is lexicographically smaller than b1, b2 ,..., bm, if and only if at the first i where ai and bi differ, ai < bi, or if no such i found, then n < m.
+
+
+
+Problem Constraints
+
+1 <= A <= 109.
+1 <= M <= 100
+1 <= B[i] < A
+
+
+
+Input Format
+
+First argument is an integer A.
+Second argument is an integer array B.
+
+
+
+Output Format
+
+Return an array denoting denoting the sequence in which you will make cuts.
+
+
+
+Example Input
+
+Input 1:
+
+ A = 6 
+ B = [1, 2, 5]
+Input 2:
+
+ A = 5
+ B = [1, 3]
+
+
+Example Output
+
+Output 1:
+
+ [2, 1, 5].
+Output 2:
+
+ [3, 1]
+
+
+Example Explanation
+
+Explanation 1:
+
+ If we make cuts in order [1, 2, 5], let us see what total cost would be.
+ For first cut, the length of rod is 6. 
+ For second cut, the length of sub-rod in which we are making cut is 5(since we already have made a cut at 1).
+ For third cut, the length of sub-rod in which we are making cut is 4(since we already have made a cut at 2).
+ So, total cost is 6 + 5 + 4.
+
+ Cut order         | Sum of cost
+(lexicographically | of each cut
+ sorted)           |
+___________________|_______________
+[1, 2, 5]          | 6 + 5 + 4 = 15
+[1, 5, 2]          | 6 + 5 + 4 = 15
+[2, 1, 5]          | 6 + 2 + 4 = 12
+[2, 5, 1]          | 6 + 4 + 2 = 12
+[5, 1, 2]          | 6 + 5 + 4 = 15
+[5, 2, 1]          | 6 + 5 + 2 = 13
+ 
+Explanation 2:
+
+ Minimum cost to cut is given by order [3, 1] i.e. 8.
 
 
 Solution ->
+
+    long [][] dp1;
+    int [][] dp2;
+    public long minimum(int l, int r , ArrayList<Integer> B){
+        if(l+1 >= r){
+            return 0;
+        }
+        if(dp1[l][r] != -1){
+            return dp1[l][r];
+        }
+        long cost = Long.MAX_VALUE;
+        int k = 0;
+        for(int i = l+1 ; i < r ; i++){
+            long temp = minimum(l,i,B) + minimum(i,r,B) + B.get(r)-B.get(l);
+            if(temp < cost){
+                cost = temp;
+                k = i;
+            }
+        }
+        dp2[l][r] = k;
+        return dp1[l][r] = cost;
+    }
+    public void filling(int l, int r, ArrayList<Integer> B,ArrayList<Integer> ans){
+        if(l+1 >= r){
+            return;
+        }
+        int cut = dp2[l][r];
+        int pos = B.get(cut);
+        ans.add(pos);
+        filling(l,cut,B,ans);
+        filling(cut,r,B,ans);
+    }
+    public ArrayList<Integer> rodCut(int A, ArrayList<Integer> B) {
+        B.add(0);
+        B.add(A);
+        Collections.sort(B);
+        int n = B.size();
+        dp1 = new long[n+2][n+2];
+        for(long[] x : dp1){
+            Arrays.fill(x,-1);
+        }
+        dp2 = new int[n+2][n+2];
+        minimum(0,B.size()-1,B);
+        ArrayList<Integer> ans = new ArrayList<>();
+        filling(0,B.size()-1,B,ans);
+        return ans;   
+    }
 
     
 ---------------------------------------------------------------------------------------------------------
 
-Q-> 
+Q3. Burst Balloons
+
+Problem Description
+You are given N balloons each with a number of coins associated with them. An array of integers A represents the coins associated with the ith balloon.
+You are asked to burst all the balloons. If the you burst balloon ith you will get A[left] * A[i] * A[right] coins. Here left and right are adjacent indices of i. After the burst, the left and right then becomes adjacent.
+
+Find the maximum coins you can collect by bursting the balloons wisely.
+
+NOTE: You may imagine A[-1] = A[N] = 1. They are not real therefore you can not burst them.
+
+
+
+Problem Constraints
+1 <= N <= 100
+1 <= A[i] <= 100
+
+
+
+Input Format
+The only argument given is the integer array A.
+
+
+
+Output Format
+Return the maximum coins you can collect by bursting the balloons wisely.
+
+
+
+Example Input
+Input 1:
+
+ A = [3, 1, 5, 8]
+Input 2:
+
+ A = [3, 1, 2]
+
+
+Example Output
+Output 1:
+
+ 167
+Output 2:
+
+ 15
+
+
+Example Explanation
+Explanation 1:
+
+ Burst ballon at index 1, coins collected = 3*1*5=15 , A becomes = [3, 5, 8] 
+ Burst ballon at index 1, coins collected = 3*5*8=120 , A becomes = [3, 8]
+ Burst ballon at index 0, coins collected = 1*3*8=24 , A becomes = [8]
+ Burst ballon at index 0, coins collected = 1*8*1 = 8
+ Total coins collected = 15 + 120 + 24 + 8 = 167
+Explanation 2:
+
+ Burst ballon at index 1, coins collected = 3*1*2 = 6, A becomes = [3, 2] 
+ Burst ballon at index 1, coins collected = 3*2*1 = 6, A becomes = [3]
+ Burst ballon at index 0, coins collected = 1*3*1 = 3
+ Total coins collected = 6 + 6 + 3 = 15
 
 
 Solution ->
 
+    public int solve(int[] A) {
+        int n = A.length;
+        int arr[] = new int[n+2];
+        arr[0] = arr[n+1] = 1;
+        for(int i = 1 ; i <= n ; i++){
+            arr[i] = A[i-1];
+        }
+
+        int dp[][] = new int[n+2][n+2];
+        int ans = Integer.MIN_VALUE;
+        for(int k = 1 ; k < dp.length ; k++){
+            for(int si = 1 ; si < dp.length-k ; si++){
+                int ei = si + k -1 ;
+                for(int i = si ; i <= ei ; i++){
+                    dp[si][ei] = Math.max(dp[si][ei],arr[si-1]*arr[i]*arr[ei+1] + dp[si][i-1]+dp[i+1][ei]);
+                }
+            }
+        }
+        return dp[1][n];
+    }
     
 ---------------------------------------------------------------------------------------------------------
 
