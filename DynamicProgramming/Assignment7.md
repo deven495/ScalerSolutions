@@ -65,7 +65,7 @@ Explanation 2:
 
 Solution ->
 
-public int maxEnvelopes(int[][] envelopes) {
+    public int maxEnvelopes(int[][] envelopes) {
     if(envelopes == null || envelopes.length == 0 
        || envelopes[0] == null || envelopes[0].length != 2)
         return 0;
@@ -88,7 +88,7 @@ public int maxEnvelopes(int[][] envelopes) {
             len++;
     }
     return len;
-}
+    }
 
 ---------------------------------------------------------------------------------------------------------
 
