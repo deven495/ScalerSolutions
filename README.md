@@ -1,5 +1,8 @@
 # ScalerSolutions - 
- Starting from Backtracking lecture will upload the rest soon
+# LANGUAGE USED - JAVA 
+# CONTRIBUTORS ARE WELCOME 
+
+# Starting from Backtracking lecture, will upload the rest soon....
  
  Solutions of All the Advanced Problems Asked at Scaler Portal in the following Sequence of topics.
  
