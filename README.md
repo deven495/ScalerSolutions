@@ -5,8 +5,8 @@
  
  1.BackTracking-Fully Uploaded
  
- 2.Dynamic Programming- Assignment5 pending / In progress
+ 2.Dynamic Programming- Fully Uploaded
  
- 3.Graphs-will be uploaded soon
+ 3.Graphs-uploading graph1 Assignment.....
 
 
