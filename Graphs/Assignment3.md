@@ -514,12 +514,6 @@ Solution ->
 ---------------------------------------------------------------------------------------------------------
 
 Q2. Cows and snacks
-Solved
-character backgroundcharacter
-Stuck somewhere?
-Ask for help from a TA and get it resolved.
-Get help from TA.
-Problem Description
 
 The legendary Farmer John is throwing a huge party, and animals from all over the world are hanging out at his house. His guests are hungry, so he instructs his cow Bessie to bring out the snacks! Moo!
 
@@ -600,7 +594,7 @@ Explanation 2:
 
 Solution ->
 
-class DSU{
+    class DSU{
     int[] parent;
     int[] size;
     int vtx;
@@ -635,8 +629,8 @@ class DSU{
         }
     }
     
-}
-public class Solution {
+    }
+    public class Solution {
     public int solve(int A, int[][] B) {
         DSU d = new DSU(A);
         int ans = 0;
@@ -651,7 +645,7 @@ public class Solution {
         }
         return ans;
     }
-}
+    }
 
     
 ---------------------------------------------------------------------------------------------------------
