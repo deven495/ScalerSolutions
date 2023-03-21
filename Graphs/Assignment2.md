@@ -70,7 +70,7 @@ Explanation 2:
 
 Solution ->
 
-    public class Solution {
+    
     class Triple {
         int row;
         int col;
@@ -135,7 +135,7 @@ Solution ->
         
         return max;
     }
-    }
+    
 
 
 
