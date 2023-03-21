@@ -1,6 +1,6 @@
 # ScalerSolutions - 
- LANGUAGE USED - JAVA 
- CONTRIBUTORS ARE WELCOME 
+ ->LANGUAGE USED - JAVA 
+ -> CONTRIBUTORS ARE WELCOME 
 
  Starting from Backtracking lecture, will upload the rest soon....
  
