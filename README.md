@@ -3,7 +3,7 @@
  -> CONTRIBUTORS ARE WELCOME 
 
  
- #Solutions of All the Advanced Problems Asked at Scaler Portal in the following Sequence of topics.
+ #Solutions of All the Advanced Problems Asked at Scaler
  
  1.BackTracking-Fully Uploaded
  
